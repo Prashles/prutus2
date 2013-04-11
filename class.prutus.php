@@ -131,11 +131,16 @@ class Prutus {
                 $h = 0;
                 $i = 0;
                 $done = false;
+                $timeBump = time();
+
                 while($done == false) {
                     if($i > $rounds) {
                         $done = true;
                     }
-
+                    if(time() - $timeBump >= 1) {
+                        echo '.';
+                        $timeBump = time();
+                    }
                     $word = base_convert($h, 10, 36);
                     $pattern = preg_replace('/\%word\%/', $word, $this->pattern);
                     $hash = hash($this->hashType, $pattern);
@@ -148,7 +153,7 @@ class Prutus {
                         $i++;
                     }
                 }
-
+                echo PHP_EOL;
                 return false;
             }
         }
