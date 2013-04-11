@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/plain');
 if(isset($_POST['password'])) {
 	if($_POST['password'] == 'exploding knees') {
 		echo json_encode(array('success' => 'logged_in', 'error' => ''));
