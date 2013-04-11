@@ -7,7 +7,7 @@ $postFields = array(
 $prutus = new Orpheus\Prutus('http://localhost/prutus2/prutus-test-interface.php', $postFields, __DIR__ . '/wordlist.txt');
 
 $prutus->setPermutation(true);
-$prutus->setBuffer(5);
+//$prutus->setBuffer(5);
 $prutus->setHash('81dc9bdb52d04dc20036dbd8313ed055', 'md5', '%word%');
 
 $results = $prutus->start(function($data, $password) {
@@ -16,4 +16,8 @@ $results = $prutus->start(function($data, $password) {
 	return $data->success == 'logged_in' ? true : false;
 });
 
-echo 'The password is: ' . $results;
+if($results !== false) {
+	echo 'The password is: ' . $results . PHP_EOL;
+} else {
+	echo 'Failed to crack password.' . PHP_EOL;
+}

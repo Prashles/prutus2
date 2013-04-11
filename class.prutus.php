@@ -127,6 +127,8 @@ class Prutus {
                         return $word;
                     }
                 }
+
+                return false;
             } else {
                 $h = 0;
                 $i = 0;
@@ -145,6 +147,7 @@ class Prutus {
                     $pattern = preg_replace('/\%word\%/', $word, $this->pattern);
                     $hash = hash($this->hashType, $pattern);
                     if($hash == $this->hash) {
+                        echo PHP_EOL;
                         return $word;
                     }
                     $h++;
